@@ -1,6 +1,6 @@
 import { Avatar, Button, Pane, Text } from 'evergreen-ui'
 import React from 'react'
-import { Switch } from 'react-router-dom'
+import { Switch } from 'evergreen-ui'
 
 export default function Navbar() {
     return (
@@ -13,7 +13,7 @@ export default function Navbar() {
             <Button appearance="primary">Profile</Button>
             <Text>Some Text</Text>
             <Avatar name="Mike Fallesen" size={40} />
-            {/* <Switch labelFor="Dark/Regular"/> */}
+            <Switch />
             <Button appearance="primary">Login/Logout</Button>
         </Pane>
     )
