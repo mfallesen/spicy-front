@@ -1,38 +1,57 @@
-import { Heading, Pane } from 'evergreen-ui'
+import { Paper, Container, makeStyles, Typography, createMuiTheme, ThemeProvider } from '@material-ui/core'
+
 import React from 'react'
-import Background from './Background'
-import './Landing.css'
+
+
+const useStyles = makeStyles({
+    background: {
+        paddingTop: '48px',
+        backgroundImage:'url(https://res.cloudinary.com/dyn9tmf2i/image/upload/v1611791392/SpiceAppBackgroundMed_gcmiqr.png)',
+        minHeight:'500px',
+        backgroundPosition:'top center',
+        backgroundSize:'cover', 
+        backgroundRepeat:'no-repeat',
+    },
+    blurrybg: {
+        marginTop: '48px',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        minHeight:'200px',
+        width:'60%',
+    }
+    
+})
+
+const theme = createMuiTheme({
+    typography: {
+        h1: {
+            // fontSize: 50
+            color: '#FFFFFF'
+        },
+        body1: {
+            fontSize: 24,
+            color: '#FFFFFF'
+        }
+    }
+})
+
 
 
 export default function LandingPage() {
+    const classes = useStyles();
     return (
-        
+        <ThemeProvider theme={theme}>
 
-           
-
-                <Pane
-                    display="flex"
-                    height={`600px`}
-                    width={'100%'}
-                    justifyContent="center"
-                    alignItems='center'
-                    backgroundImage={'url(https://res.cloudinary.com/dyn9tmf2i/image/upload/v1611791392/SpiceAppBackgroundMed_gcmiqr.png)'}
-                >
-                    <Pane
-                    width={`60%`}
-                    className={'blurredBG'}
-                    borderRadius={`10px`}
-                    paddingBottom='40px'
-                    paddingLeft='40px'
-                    paddingRight='40px'
-                    >
-
-                    <Heading color='white' size={900} marginTop='default'>Welcome to Krydda.</Heading>
-                    <Heading color='white' size={700} marginTop='default'>Your Virtual Spice Rack</Heading>
-                    <Heading color='white' size={500} marginTop='default'>We help you keep your spice rack organized, virtually speaking of course, we can't control how you organize them at home.</Heading>
-                    </Pane>
-                </Pane>
-           
-       
+        <Paper
+        className={classes.background}
+        >
+            <Container
+            className={classes.blurrybg}
+            >
+               <Typography variant="h1" align='center' >Krydda.</Typography>
+               <Typography variant='body1' align='center'>Your Virtual Spice Rack</Typography>
+            </Container>
+        </Paper>
+        </ThemeProvider>
     )
 }
