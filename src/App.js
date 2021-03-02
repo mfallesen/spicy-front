@@ -9,15 +9,18 @@ import AppOverview from './components/AppOverview';
 import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import theme from './theme'
+import LogInNav from './components/LogInNav';
 
 function App() {
+let navFlag = false
+
   return (
     <div>
 <ThemeProvider theme={theme}>
 
       <CssBaseline>
 
-        <Navbar></Navbar>
+        {navFlag === true ? <LogInNav></LogInNav> :<Navbar></Navbar>}
         <Switch>
           <Route exact path={['/','/home']}>
             <LandingPage />
