@@ -27,7 +27,7 @@ export default function SignIn() {
                                 variant='outlined'
                                 name='name'
                                 label='Desired User Name:'
-                                placeholder='Witty Username Here:'
+                                placeholder='Username'
                             />
                             <TextField
                             className={classes.inputbox}
@@ -35,7 +35,7 @@ export default function SignIn() {
                                 variant='outlined'
                                 name='password'
                                 label='Password:'
-                                placeholder='Enter Password:'
+                                placeholder='Password'
                             />
                             
 
