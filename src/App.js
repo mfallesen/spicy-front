@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
+import SpiceRack from './components/SpiceRack'
 import AppOverview from './components/AppOverview';
 import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import SignUp from './components/SignUp';
@@ -21,9 +22,13 @@ function App() {
           <Route exact path={['/','/home']}>
             <LandingPage />
             <AppOverview />
-            <SignUp/>
           </Route>
-
+        <Route exact path={'/signup'}>
+            <SignUp/>
+        </Route>
+        <Route exact path={'/spicerack'}>
+          <SpiceRack/>
+        </Route>
         </Switch>
         <Footer />
       </CssBaseline>
