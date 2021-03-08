@@ -35,13 +35,15 @@ export default function Navbar() {
 
     return (
         <div style={{
-            backgroundColor: scrollState === 'top' ? 'transparent' : 'grey',
+            // Color needs to be changed to Transparent for prod
+            backgroundColor: scrollState === 'top' ? 'black' : 'grey',
             color: scrollState === 'top' ? 'white' : 'black',
             transitionDuration: '1s',
             position: 'fixed',
             marginTop: '5px',
             marginLeft:'5px',
-            borderRadius: '5px'
+            borderRadius: '5px',
+            top: '1px',
         }}>
         <Button aria-controls="simple-menu" color='inherit' aria-haspopup="true" onClick={handleClick}>
           Open Menu
