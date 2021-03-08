@@ -1,5 +1,7 @@
-import { Container, Grid, makeStyles, TextField, Typography } from '@material-ui/core'
+import { Container, Grid, makeStyles, TextField, Typography, Button } from '@material-ui/core'
 import React from 'react'
+import CancelIcon from '@material-ui/icons/Cancel';
+
 
 const useStyles = makeStyles((theme) => ({
     inputbox: {
@@ -8,14 +10,30 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function SignIn() {
+export default function SignIn(props) {
+
+    const handleLogin = () => {
+        // Placeholder
+        console.log("Logging In!")
+    }
+
+    const handleSignUp = () => {
+        // Placeholder
+        console.log("redirecting to Sign Up Page");
+    }
+
+    const handleClose = () => {
+        // Placeholder
+        console.log("Closing Modal!");
+    }
 
     const classes = useStyles()
     return (
 
-        <Container>
+        <Container className={props.classes.signInBG}>
             <Grid container justify='center' direction='column' alignItems='center'>
-                <Typography component='h2'> Ready to take control of your Spicy Life?</Typography>
+                <CancelIcon onClick={handleClose}/>
+                <Typography component='h2'> </Typography>
                 {/* NoValidate only for development and testing */}
                 <from noValidate>
                     <Grid container spacing={3} justify='center' direction='column'>
@@ -26,7 +44,7 @@ export default function SignIn() {
                                 required
                                 variant='outlined'
                                 name='name'
-                                label='Desired User Name:'
+                                label='User Name:'
                                 placeholder='Username'
                             />
                             <TextField
@@ -39,6 +57,10 @@ export default function SignIn() {
                             />
                             
 
+                        </Grid>
+                        <Grid item justify='right'  spacing={3}>
+                            <Button onClick={handleLogin}>Log In</Button>
+                            <Button onClick={handleSignUp}>Sign Me Up</Button>
                         </Grid>
                     </Grid>
                 </from>

@@ -1,10 +1,31 @@
-import {React, useEffect, useState} from 'react'
-import {Button, } from '@material-ui/core'
+import { React, useEffect, useState } from 'react'
+import { Button, makeStyles, Modal, } from '@material-ui/core'
+import SignIn from '../SignIn/index'
+
+const useStyles = makeStyles({
+    signInBG: {
+        backgroundColor: 'white',
+        width: '60%',
+        padding: '20px',
+        borderRadius: '5px',
+        position: 'fixed',
+        top: '50%',
+        left: '20%',
+        marginRight: '50%'
+
+    }
+})
+
+
+
 
 export default function LogInNav() {
+    const classes = useStyles()
 
     const [scrollState, setScrollState] = useState('top')
+    const [modalOpen, setModalOpen] = useState(false)
     
+
     useEffect(() => {
         let navScroll = null
         navScroll = document.addEventListener('scroll', scrollEvent => {
@@ -12,7 +33,7 @@ export default function LogInNav() {
             if (scrolled >= 100) {
                 setScrollState('notTop')
             } else {
-                setScrollState('top')  
+                setScrollState('top')
             }
         })
         return () => {
@@ -20,6 +41,12 @@ export default function LogInNav() {
         }
     }, [scrollState])
 
+    const handleOpen = () => {
+        setModalOpen(true);
+    }
+    const handleClose = () => {
+        setModalOpen(false);
+    }
 
     return (
         <div style={{
@@ -28,10 +55,18 @@ export default function LogInNav() {
             transitionDuration: '1s',
             position: 'fixed',
             marginTop: '5px',
-            marginLeft:'5px',
+            marginLeft: '5px',
             borderRadius: '5px'
         }}>
-            <Button color='inherit'>Log In</Button>
+            <Button color='inherit' onClick={handleOpen}>Log In</Button>
+            <Modal
+                open={modalOpen}
+                onClose={handleClose}
+                aria-labelledby='login-modal-title'
+                aria-describedby='login-modal-description'
+            >
+                <SignIn  classes={classes}/>
+            </Modal>
         </div>
     )
 }
