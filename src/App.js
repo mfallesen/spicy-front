@@ -12,15 +12,15 @@ import theme from './theme'
 import LogInNav from './components/LogInNav';
 
 function App() {
-let navFlag = false
+let navFlag = true
 
   return (
     <div>
 <ThemeProvider theme={theme}>
 
+        {navFlag === true ? <LogInNav></LogInNav> : <Navbar></Navbar>}
       <CssBaseline>
 
-        {navFlag === true ? <LogInNav></LogInNav> :<Navbar></Navbar>}
         <Switch>
           <Route exact path={['/','/home']}>
             <LandingPage />
