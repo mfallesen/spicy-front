@@ -1,12 +1,17 @@
-import { Container, Grid, makeStyles, TextField, Typography, Button } from '@material-ui/core'
+import { Container, Grid, makeStyles, TextField, Typography, Button, IconButton } from '@material-ui/core'
 import React from 'react'
 import CancelIcon from '@material-ui/icons/Cancel';
+import './SignIn.css'
 
 
 const useStyles = makeStyles((theme) => ({
     inputbox: {
         marginLeft: theme.spacing(3),
         marginRight: theme.spacing(3)
+    },
+    icon: {
+        marginLeft: '95%',
+        marginTop: '-15px'
     }
 }))
 
@@ -31,8 +36,11 @@ export default function SignIn(props) {
     return (
 
         <Container className={props.classes.signInBG}>
+                <IconButton className={classes.icon} onClick={handleClose}>
+                <CancelIcon  htmlColor='red' />
+                </IconButton>
+
             <Grid container justify='center' direction='column' alignItems='center'>
-                <CancelIcon onClick={handleClose}/>
                 <Typography component='h2'> </Typography>
                 {/* NoValidate only for development and testing */}
                 <from noValidate>
@@ -58,9 +66,9 @@ export default function SignIn(props) {
                             
 
                         </Grid>
-                        <Grid item justify='right'  spacing={3}>
-                            <Button onClick={handleLogin}>Log In</Button>
-                            <Button onClick={handleSignUp}>Sign Me Up</Button>
+                        <Grid item justify='right' alignItems='right'  spacing={3}>
+                            <Button variant='contained' color="primary" onClick={handleLogin}>Log In</Button>
+                            <Button variant='contained' color="primary" onClick={handleSignUp}>Sign Me Up</Button>
                         </Grid>
                     </Grid>
                 </from>

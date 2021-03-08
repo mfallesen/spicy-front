@@ -65,7 +65,7 @@ export default function LogInNav() {
                 aria-labelledby='login-modal-title'
                 aria-describedby='login-modal-description'
             >
-                <SignIn  classes={classes}/>
+                <SignIn  classes={classes} handleClose={handleClose}/>
             </Modal>
         </div>
     )
