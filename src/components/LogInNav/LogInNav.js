@@ -19,11 +19,24 @@ const useStyles = makeStyles({
 
 
 
-export default function LogInNav() {
+export default function LogInNav(props) {
     const classes = useStyles()
 
     const [scrollState, setScrollState] = useState('top')
     const [modalOpen, setModalOpen] = useState(false)
+
+    const [logInFormState, setLogInFormState] = useState({
+        username: '',
+        password: '',
+      })
+    
+      const logInInputChange = event => {
+        const { name, value } = event.target;
+        setLogInFormState({
+          ...logInFormState,
+          [name]: value
+        })
+      }
     
 
     useEffect(() => {
@@ -65,8 +78,8 @@ export default function LogInNav() {
                 aria-labelledby='login-modal-title'
                 aria-describedby='login-modal-description'
             >
-                <SignIn  classes={classes} handleClose={handleClose}/>
+                <SignIn  classes={classes} handleClose={handleClose} inputChange={logInInputChange} form={logInFormState}/>
             </Modal>
-        </div>
+        </div> 
     )
 }

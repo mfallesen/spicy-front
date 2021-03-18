@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function SignIn(props) {
+    
 
     const handleLogin = () => {
         // Placeholder
@@ -43,7 +44,7 @@ export default function SignIn(props) {
             <Grid container justify='center' direction='column' alignItems='center'>
                 <Typography component='h2'> </Typography>
                 {/* NoValidate only for development and testing */}
-                <from noValidate>
+                <form noValidate>
                     <Grid container spacing={3} justify='center' direction='column'>
 
                         <Grid item spacing={3}>
@@ -51,9 +52,11 @@ export default function SignIn(props) {
                             className={classes.inputbox}
                                 required
                                 variant='outlined'
-                                name='name'
+                                name='username'
                                 label='User Name:'
                                 placeholder='Username'
+                                onChange={props.inputChange}
+                                value={props.form.username}
                             />
                             <TextField
                             className={classes.inputbox}
@@ -62,6 +65,8 @@ export default function SignIn(props) {
                                 name='password'
                                 label='Password:'
                                 placeholder='Password'
+                                onChange={props.inputChange}
+                                value={props.form.password}
                             />
                             
 
@@ -71,7 +76,7 @@ export default function SignIn(props) {
                             <Button variant='contained' color="primary" onClick={handleSignUp}>Sign Me Up</Button>
                         </Grid>
                     </Grid>
-                </from>
+                </form>
             </Grid>
 
         </Container>
