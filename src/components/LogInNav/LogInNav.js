@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { Button, makeStyles, Modal, } from '@material-ui/core'
 import SignIn from '../SignIn/index'
+import API from '../../utils/API'
 
 const useStyles = makeStyles({
     signInBG: {
@@ -19,8 +20,10 @@ const useStyles = makeStyles({
 
 
 
-export default function LogInNav(props) {
+export default function LogInNav() {
     const classes = useStyles()
+
+    const[spiceRackState, setSpiceRackState] = useState()
 
     const [scrollState, setScrollState] = useState('top')
     const [modalOpen, setModalOpen] = useState(false)
@@ -61,6 +64,36 @@ export default function LogInNav(props) {
         setModalOpen(false);
     }
 
+    const handleUserLogin = event => {
+        event.preventDefault();
+        API.login(logInFormState).then(newToken => {
+            localStorage.setItem('JWT', newToken.data.token);
+            localStorage.setItem('USERNAME', logInFormState.username);
+
+
+            const userID = newToken.data.id;
+            console.log('userID: ', userID);
+
+            window.location.href = '/spicerack'
+
+
+            console.log('The call is returned');
+            console.log(newToken);
+            // Space for API call to retrieve spice rack
+            API.getUserSpices(userID).then(userSpices => {
+                const Spices = JSON.stringify(userSpices.data)
+                console.log('USER SPICES', Spices);
+               localStorage.setItem('Spices', Object.values(userSpices))
+                
+            }).then()
+        }).catch(err => {
+            console.log("there is an error");
+            console.error(err);
+        })
+    }
+    
+    
+    
     return (
         <div style={{
             backgroundColor: scrollState === 'top' ? 'transparent' : 'grey',
@@ -78,7 +111,7 @@ export default function LogInNav(props) {
                 aria-labelledby='login-modal-title'
                 aria-describedby='login-modal-description'
             >
-                <SignIn  classes={classes} handleClose={handleClose} inputChange={logInInputChange} form={logInFormState}/>
+                <SignIn  classes={classes} handleClose={handleClose} handleUserLogin={handleUserLogin} inputChange={logInInputChange} form={logInFormState}/>
             </Modal>
         </div> 
     )

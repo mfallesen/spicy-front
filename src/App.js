@@ -24,18 +24,7 @@ function App() {
     passwordConfirm: ''
   })
 
-  const [logInFormState, setLogInFormState] = useState({
-    username: '',
-    password: '',
-  })
 
-  const logInInputChange = event => {
-    const { name, value } = event.target;
-    setLogInFormState({
-      ...logInFormState,
-      [name]: value
-    })
-  }
 
   const handleUserRegistration = event => {
     event.preventDefault();
@@ -58,7 +47,7 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
 
-        {navFlag === true ? <LogInNav inputChange={logInInputChange} logInFormState={logInFormState} /> : <Navbar></Navbar>}
+        {navFlag === true ? <LogInNav /> : <Navbar></Navbar>}
         <CssBaseline>
 
           <Switch>

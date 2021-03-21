@@ -72,7 +72,7 @@ export default function SignIn(props) {
 
                         </Grid>
                         <Grid item justify='right' alignItems='right'  spacing={3}>
-                            <Button variant='contained' color="primary" onClick={handleLogin}>Log In</Button>
+                            <Button variant='contained' color="primary" onClick={props.handleUserLogin}>Log In</Button>
                             <Button variant='contained' color="primary" onClick={handleSignUp}>Sign Me Up</Button>
                         </Grid>
                     </Grid>
