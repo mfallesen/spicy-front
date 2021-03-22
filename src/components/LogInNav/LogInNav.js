@@ -72,7 +72,7 @@ export default function LogInNav() {
 
 
             const userID = newToken.data.id;
-            console.log('userID: ', userID);
+            // console.log('userID: ', userID);
 
             window.location.href = '/spicerack'
 
@@ -83,7 +83,7 @@ export default function LogInNav() {
             API.getUserSpices(userID).then(userSpices => {
                 const Spices = JSON.stringify(userSpices.data)
                 console.log('USER SPICES', Spices);
-               localStorage.setItem('Spices', Object.values(userSpices))
+               localStorage.setItem('Spices', Object.values(Spices))
                 
             }).then()
         }).catch(err => {

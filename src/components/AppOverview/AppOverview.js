@@ -15,7 +15,7 @@ export default function AppOverview() {
     const classes = useStyles();
     return (
         <Paper>
-            <Grid container justify='center' alignContent='center' direction='column'>
+            <Grid container justify='center' alignContent='center' >
                 <Grid item xs={8} className={classes.testbg, classes.overview} >
 
                     <Typography>Keeping up with what you've got in your Spice Cabinet at home isn't always easy and its easy to forget to buy or buy extra of something you already have. As an avid home cook myself I wanted to find a way to change that and so I decided to create Krydda. Now instead of going through my home spice cabinet every time I think I need something I can just check the app. It really is that simple.</Typography>

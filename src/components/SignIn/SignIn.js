@@ -41,7 +41,7 @@ export default function SignIn(props) {
                 <CancelIcon  htmlColor='red' />
                 </IconButton>
 
-            <Grid container justify='center' direction='column' alignItems='center'>
+            <Grid container justify='center' direction='column' >
                 <Typography component='h2'> </Typography>
                 {/* NoValidate only for development and testing */}
                 <form noValidate>
@@ -71,7 +71,7 @@ export default function SignIn(props) {
                             
 
                         </Grid>
-                        <Grid item justify='right' alignItems='right'  spacing={3}>
+                        <Grid item spacing={3}>
                             <Button variant='contained' color="primary" onClick={props.handleUserLogin}>Log In</Button>
                             <Button variant='contained' color="primary" onClick={handleSignUp}>Sign Me Up</Button>
                         </Grid>

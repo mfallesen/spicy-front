@@ -17,9 +17,17 @@ const calls = {
     },
 
     getUserSpices: async function(userID) {
-        return await axios.post(BASEURL + '/user/findUserSpices', {
+        const spiceIds = await axios.post(BASEURL + '/user/findUserSpices', {
             userId: userID,
         })
+        
+        const spiceMap = spiceIds.forEach( async (spiceId) => {await axios.post(BASEURL + '/user/findIndividualSpiceInfo', {
+            id: spiceId,
+        })
+    })
+
+        console.log(spiceMap)
+        return spiceMap
     },
 } 
 

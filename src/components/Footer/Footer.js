@@ -14,7 +14,7 @@ export default function Footer() {
                 <Grid item>
                     <Typography></Typography>
                 </Grid>
-                <Grid item alignItems='column'>
+                <Grid item >
                     <Typography>Need to get in touch?</Typography>
                     <Typography><GitHubIcon/>Found an Issue? Open an issue on GitHub</Typography>
                     <Typography><EmailIcon/>You can also reach me through Email</Typography>

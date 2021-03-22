@@ -18,9 +18,9 @@ export default function SignUp(props) {
                 <Typography component='h2'> Ready to take control of your Spicy Life?</Typography>
                 {/* NoValidate only for development and testing */}
                 <form onSubmit={props.onSubmit} noValidate>
-                    <Grid container spacing={3} justify='center' direction='column'>
+                    <Grid container spacing={3} justify='center' >
 
-                        <Grid item spacing={3}>
+                        <Grid item >
                             <TextField
                             className={classes.inputbox}
                                 required
@@ -53,7 +53,7 @@ export default function SignUp(props) {
                                 value={props.form.email}
                             />
                         </Grid>
-                        <Grid item spacing={3}>
+                        <Grid item >
                             <TextField
                             className={classes.inputbox}
                                 required
