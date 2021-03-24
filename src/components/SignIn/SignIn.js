@@ -47,7 +47,7 @@ export default function SignIn(props) {
                 <form noValidate>
                     <Grid container spacing={3} justify='center' direction='column'>
 
-                        <Grid item spacing={3}>
+                        <Grid item >
                         <TextField
                             className={classes.inputbox}
                                 required
@@ -71,7 +71,7 @@ export default function SignIn(props) {
                             
 
                         </Grid>
-                        <Grid item spacing={3}>
+                        <Grid item >
                             <Button variant='contained' color="primary" onClick={props.handleUserLogin}>Log In</Button>
                             <Button variant='contained' color="primary" onClick={handleSignUp}>Sign Me Up</Button>
                         </Grid>

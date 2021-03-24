@@ -74,21 +74,25 @@ export default function LogInNav() {
             const userID = newToken.data.id;
             // console.log('userID: ', userID);
 
-            window.location.href = '/spicerack'
-
-
+            
+            
             console.log('The call is returned');
-            console.log(newToken);
+            console.log(JSON.stringify(newToken.data.token));
             // Space for API call to retrieve spice rack
-            API.getUserSpices(userID).then(userSpices => {
-                const Spices = JSON.stringify(userSpices.data)
-                console.log('USER SPICES', Spices);
-               localStorage.setItem('Spices', Object.values(Spices))
+            API.getUserSpices(userID).then(spiceArr => {
+                const Spices = JSON.stringify(spiceArr)
+                // console.log('USER SPICES', Spices);
+                localStorage.setItem('Spices', Spices)
+
+                console.log('SPICES!!!!!!!!!', JSON.parse(Spices))
                 
-            }).then()
+            })
         }).catch(err => {
             console.log("there is an error");
             console.error(err);
+        }).finally(() => {
+            
+            // window.location.href = '/'
         })
     }
     
