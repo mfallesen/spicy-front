@@ -17,11 +17,11 @@ function App() {
   
   let isLoggedIn = false;
 
-  // if (localStorage.getItem('JWT')) {
-  //   isLoggedIn = false
-  // } else {
-  //   isLoggedIn = true
-  // }
+  if (localStorage.getItem('JWT')) {
+    isLoggedIn = true
+  } else {
+    isLoggedIn = false
+  }
 
   const [signUpFormState, setSignUpFormState] = useState({
     username: '',

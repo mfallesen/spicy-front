@@ -33,6 +33,13 @@ export default function Navbar() {
         setAnchorEl(null);
       };
 
+      const logout = () => {
+        localStorage.removeItem("JWT");
+        localStorage.removeItem("USERNAME");
+        localStorage.removeItem("Spices");
+        window.location.href = "/";
+    }
+
     return (
         <div style={{
             // Color needs to be changed to Transparent for prod
@@ -57,7 +64,7 @@ export default function Navbar() {
         >
           <MenuItem onClick={handleClose}>My Spice Rack</MenuItem>
           <MenuItem onClick={handleClose}>My Account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
       </div>
     )
