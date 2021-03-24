@@ -64,9 +64,9 @@ export default function LogInNav() {
         setModalOpen(false);
     }
 
-    const handleUserLogin = event => {
+    const handleUserLogin = async event => {
         event.preventDefault();
-        API.login(logInFormState).then(newToken => {
+        await API.login(logInFormState).then(async newToken => {
             localStorage.setItem('JWT', newToken.data.token);
             localStorage.setItem('USERNAME', logInFormState.username);
 
@@ -77,11 +77,13 @@ export default function LogInNav() {
             
             
             console.log('The call is returned');
+            console.log(userID);
             console.log(JSON.stringify(newToken.data.token));
             // Space for API call to retrieve spice rack
-            API.getUserSpices(userID).then(spiceArr => {
+            await API.getUserSpices(userID).then(spiceArr => {
+                console.log("It gets into the getUserSpices Call");
                 const Spices = JSON.stringify(spiceArr)
-                // console.log('USER SPICES', Spices);
+                console.log('USER SPICES', Spices);
                 localStorage.setItem('Spices', Spices)
                 
             })
@@ -89,8 +91,7 @@ export default function LogInNav() {
             console.log("there is an error");
             console.error(err);
         }).finally(() => {
-            
-            // window.location.href = '/'
+            window.location.href = '/spicerack'           
         })
     }
     

@@ -34,6 +34,7 @@ const calls = {
             
             console.log('========',userSPICERACK);
             userSpiceRack.push(userSPICERACK.data[0])
+            console.log('++++++++++', userSpiceRack)
         }
 
         let userSpices = [];

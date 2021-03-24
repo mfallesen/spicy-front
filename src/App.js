@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
 import SpiceRack from './components/SpiceRack'
 import AppOverview from './components/AppOverview';
-import { BrowserRouter as Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import theme from './theme'
 import LogInNav from './components/LogInNav';
@@ -14,7 +14,14 @@ import API from './utils/API';
 import { useState } from 'react';
 
 function App() {
-  let navFlag = true
+  
+  let isLoggedIn = false;
+
+  // if (localStorage.getItem('JWT')) {
+  //   isLoggedIn = false
+  // } else {
+  //   isLoggedIn = true
+  // }
 
   const [signUpFormState, setSignUpFormState] = useState({
     username: '',
@@ -47,7 +54,7 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
 
-        {navFlag === true ? <LogInNav /> : <Navbar></Navbar>}
+        {isLoggedIn === false ? <LogInNav /> : <Navbar></Navbar>}
         <CssBaseline>
 
           <Switch>
@@ -59,7 +66,7 @@ function App() {
               <SignUp onSubmit={handleUserRegistration} inputChange={inputChangeRegister} form={signUpFormState} />
             </Route>
             <Route exact path={'/spicerack'}>
-              <SpiceRack />
+              <SpiceRack /> 
             </Route>
           </Switch>
           <Footer />
