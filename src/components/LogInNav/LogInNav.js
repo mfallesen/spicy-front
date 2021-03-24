@@ -83,8 +83,6 @@ export default function LogInNav() {
                 const Spices = JSON.stringify(spiceArr)
                 // console.log('USER SPICES', Spices);
                 localStorage.setItem('Spices', Spices)
-
-                console.log('SPICES!!!!!!!!!', JSON.parse(Spices))
                 
             })
         }).catch(err => {
