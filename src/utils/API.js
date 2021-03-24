@@ -17,17 +17,46 @@ const calls = {
     },
 
     getUserSpices: async function(userID) {
+       
         const spiceIds = await axios.post(BASEURL + '/user/findUserSpices', {
             userId: userID,
         })
-        
-        const spiceMap = spiceIds.forEach( async (spiceId) => {await axios.post(BASEURL + '/user/findIndividualSpiceInfo', {
-            id: spiceId,
-        })
-    })
 
-        console.log(spiceMap)
-        return spiceMap
+        let userSpiceRack = [];
+
+        for (let i = 0; i < spiceIds.data.length; i++) {
+
+            const userSPICERACK = await axios.post(BASEURL + '/user/populateSpices', {
+                id: spiceIds.data[i],
+                userId: userID,
+            })
+            console.log("getting spice rack number#", spiceIds.data[i] );
+            
+            console.log('========',userSPICERACK);
+            userSpiceRack.push(userSPICERACK.data[0])
+        }
+
+        let userSpices = [];
+
+        for (let i = 0; i < spiceIds.data.length; i++) {
+
+            const userSPICES = await axios.post(BASEURL + '/user/findIndividualSpiceInfo', {
+                id: spiceIds.data[i],
+            })
+            console.log("getting spice", spiceIds.data[i] );
+            
+            console.log(userSPICES);
+            userSpices.push(userSPICES.data[0])
+        }
+        
+        console.log(userSpiceRack)
+        console.log(userSpices)
+
+        let spiceArr = userSpices.map((spice, i) => Object.assign({}, spice, userSpiceRack[i] ))
+
+        console.log(spiceArr)
+
+        return spiceArr
     },
 } 
 
