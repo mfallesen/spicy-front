@@ -12,6 +12,7 @@ import theme from './theme'
 import LogInNav from './components/LogInNav';
 import API from './utils/API';
 import { useState } from 'react';
+import AddSpice from './components/AddSpice';
 
 function App() {
   
@@ -66,7 +67,8 @@ function App() {
               <SignUp onSubmit={handleUserRegistration} inputChange={inputChangeRegister} form={signUpFormState} />
             </Route>
             <Route exact path={'/spicerack'}>
-              <SpiceRack /> 
+              <SpiceRack />
+              <AddSpice/>
             </Route>
           </Switch>
           <Footer />

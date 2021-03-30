@@ -16,12 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function SignIn(props) {
-    
 
-    const handleLogin = () => {
-        // Placeholder
-        console.log("Logging In!")
-    }
 
     const handleSignUp = () => {
         // Placeholder
