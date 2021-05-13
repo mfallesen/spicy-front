@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import SpiceJar from './SpiceJar'
+import AddSpice from './AddSpice'
 import './SpiceRack.css'
 
 
@@ -91,6 +92,7 @@ export default function SpiceRack(props) {
                       })
                     : <Typography>Looks Like you don't have any spices yet!. Lets Change that. </Typography>}
             </Grid>
+            <AddSpice/>
         </div>
     )
 }

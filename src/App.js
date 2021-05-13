@@ -12,7 +12,7 @@ import theme from './theme'
 import LogInNav from './components/LogInNav';
 import API from './utils/API';
 import { useState } from 'react';
-import AddSpice from './components/AddSpice';
+
 
 function App() {
   
@@ -68,7 +68,7 @@ function App() {
             </Route>
             <Route exact path={'/spicerack'}>
               <SpiceRack />
-              <AddSpice/>
+              
             </Route>
           </Switch>
           <Footer />

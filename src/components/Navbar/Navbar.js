@@ -34,9 +34,7 @@ export default function Navbar() {
       };
 
       const logout = () => {
-        localStorage.removeItem("JWT");
-        localStorage.removeItem("USERNAME");
-        localStorage.removeItem("Spices");
+        localStorage.clear();
         window.location.href = "/";
     }
 

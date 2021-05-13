@@ -4,20 +4,20 @@ const qs = require('qs');
 
 const calls = {
     // register user
-    registerUser: async function(userData) {
-        console.log('API CALL DATA', userData);
+    registerUser: async function (userData) {
+        // console.log('API CALL DATA', userData);
         return await axios.post(BASEURL + '/user/registerUser', userData)
     },
 
-    login: function(userData) {
+    login: function (userData) {
         return axios.post(BASEURL + '/user/loginUser', {
-            username:userData.username,
+            username: userData.username,
             password: userData.password,
         })
     },
 
-    getUserSpices: async function(userID) {
-       
+    getUserSpices: async function (userID) {
+
         const spiceIds = await axios.post(BASEURL + '/user/findUserSpices', {
             userId: userID,
         })
@@ -30,11 +30,11 @@ const calls = {
                 id: spiceIds.data[i],
                 userId: userID,
             })
-            console.log("getting spice rack number#", spiceIds.data[i] );
-            
-            console.log('========',userSPICERACK);
+            // console.log("getting spice rack number#", spiceIds.data[i]);
+
+            // console.log('========', userSPICERACK);
             userSpiceRack.push(userSPICERACK.data[0])
-            console.log('++++++++++', userSpiceRack)
+            // console.log('++++++++++', userSpiceRack)
         }
 
         let userSpices = [];
@@ -44,21 +44,56 @@ const calls = {
             const userSPICES = await axios.post(BASEURL + '/user/findIndividualSpiceInfo', {
                 id: spiceIds.data[i],
             })
-            console.log("getting spice", spiceIds.data[i] );
-            
-            console.log(userSPICES);
+            // console.log("getting spice", spiceIds.data[i]);
+
+            // console.log(userSPICES);
             userSpices.push(userSPICES.data[0])
         }
-        
-        console.log(userSpiceRack)
-        console.log(userSpices)
 
-        let spiceArr = userSpices.map((spice, i) => Object.assign({}, spice, userSpiceRack[i] ))
+        // console.log(userSpiceRack)
+        // console.log(userSpices)
 
-        console.log(spiceArr)
+        let spiceArr = userSpices.map((spice, i) => Object.assign({}, spice, userSpiceRack[i]))
+
+        // console.log(spiceArr)
 
         return spiceArr
     },
-} 
+
+    addSpice: async function (spiceData) {          
+        
+        const spiceId = await axios.post(BASEURL + '/user/addSpice', {
+            spice_name: spiceData.spicename,
+            brand: spiceData.brandname
+        })
+
+        localStorage.setItem("spiceAddedId", JSON.stringify(spiceId.data))
+
+        
+
+
+       
+    },
+
+
+
+
+
+
+    addSpiceToRack: async function(spiceData, spiceId) {
+
+        console.log(spiceData, spiceId)
+
+        await axios.post(BASEURL + '/user/addSpiceToUserRack',{
+            purchase_date: spiceData.purchasedate,
+            expiration_date: spiceData.expiredate,
+            spiceId: localStorage.getItem('spiceAddedId'),
+            userId: localStorage.getItem('userId'),
+            spice_name: spiceData.spicename,
+            brand: spiceData.brandname
+        })
+    }
+
+}
 
 export default calls;

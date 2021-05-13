@@ -72,6 +72,7 @@ export default function LogInNav() {
 
 
             const userID = newToken.data.id;
+            localStorage.setItem('userId', userID)
             // console.log('userID: ', userID);
 
             
