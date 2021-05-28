@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
 import SpiceRack from './components/SpiceRack'
 import AppOverview from './components/AppOverview';
-import { BrowserRouter as Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Route, Switch} from 'react-router-dom';
 import SignUp from './components/SignUp';
 import theme from './theme'
 import LogInNav from './components/LogInNav';
