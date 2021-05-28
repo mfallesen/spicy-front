@@ -1,14 +1,16 @@
+import { useScrollTrigger } from '@material-ui/core';
 import axios from 'axios';
 const BASEURL = process.env.REACT_APP_SPICY_API;
 const qs = require('qs');
+var dayjs = require('dayjs')
 
 const calls = {
     // register user
     registerUser: async function (userData) {
-        // console.log('API CALL DATA', userData);
         return await axios.post(BASEURL + '/user/registerUser', userData)
     },
 
+    // Log User In
     login: function (userData) {
         return axios.post(BASEURL + '/user/loginUser', {
             username: userData.username,
@@ -16,6 +18,7 @@ const calls = {
         })
     },
 
+    // Get Spices in Users Spice Rack
     getUserSpices: async function (userID) {
 
         const spiceIds = await axios.post(BASEURL + '/user/findUserSpices', {
@@ -30,11 +33,16 @@ const calls = {
                 id: spiceIds.data[i],
                 userId: userID,
             })
-            // console.log("getting spice rack number#", spiceIds.data[i]);
 
-            // console.log('========', userSPICERACK);
+            // let purchase = dayjs(userSPICERACK.data[0].purchase_date).format('MM/YYYY')
+            // let expiration_date = dayjs(userSPICERACK.data[0].expiration_date).format('MM/YYYY')
+
+            // userSPICERACK.data[0].purchase_date = purchase;
+
+            // console.log(userSPICERACK)
+           
             userSpiceRack.push(userSPICERACK.data[0])
-            // console.log('++++++++++', userSpiceRack)
+            
         }
 
         let userSpices = [];
@@ -44,22 +52,23 @@ const calls = {
             const userSPICES = await axios.post(BASEURL + '/user/findIndividualSpiceInfo', {
                 id: spiceIds.data[i],
             })
-            // console.log("getting spice", spiceIds.data[i]);
-
-            // console.log(userSPICES);
+            
             userSpices.push(userSPICES.data[0])
         }
 
-        // console.log(userSpiceRack)
-        // console.log(userSpices)
-
         let spiceArr = userSpices.map((spice, i) => Object.assign({}, spice, userSpiceRack[i]))
 
-        // console.log(spiceArr)
+        for (let i = 0; i < spiceArr.length; i++) {
+            let purchase = dayjs(spiceArr[i].purchase_date).format('MM/YYYY')
+            spiceArr[i].purchase_date = purchase;
+            let expiration = dayjs(spiceArr[i].expiration_date).format('MM/YYYY')
+            spiceArr[i].expiration_date = expiration
+        }
 
         return spiceArr
     },
 
+    // Add Spice to Database
     addSpice: async function (spiceData) {          
         
         const spiceId = await axios.post(BASEURL + '/user/addSpice', {
@@ -68,18 +77,10 @@ const calls = {
         })
 
         localStorage.setItem("spiceAddedId", JSON.stringify(spiceId.data))
-
-        
-
-
-       
+ 
     },
 
-
-
-
-
-
+    // Add Spice to Users Spice Rack
     addSpiceToRack: async function(spiceData, spiceId) {
 
         console.log(spiceData, spiceId)
@@ -92,6 +93,7 @@ const calls = {
             spice_name: spiceData.spicename,
             brand: spiceData.brandname
         })
+
     }
 
 }
