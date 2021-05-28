@@ -1,3 +1,9 @@
 .spiceRack {
-    margin-top: 50px;
+  padding-top: 50px;
+  background-color: plum;
 }
+
+.spiceRackGrid {
+  margin-top: 50px !important;
+}
+/*# sourceMappingURL=SpiceRack.css.map */

@@ -2,7 +2,6 @@ import { Grid, Container, IconButton, makeStyles,  TextField, Button } from '@ma
 import {React, useState} from 'react';
 import CancelIcon from '@material-ui/icons/Cancel';
 import API from '../../utils/API'
-import { CollectionsOutlined } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default function AddSpiceDialogue() {
-    const userId = localStorage.getItem('userId')
+export default function AddSpiceDialogue(props) {
+    const userId = localStorage.getItem('userId');
 
     const classes = useStyles();
 
@@ -47,42 +46,31 @@ export default function AddSpiceDialogue() {
             ...addSpiceState,
             [name]: value
         })
+        
     }
 
     const handleAddSpice = async event => {
         event.preventDefault();
 
-        await API.addSpice(addSpiceState)
-        .then( 
-            async (spiceID) => {
-                // console.log(spiceID)
-                // let userId = localStorage.getItem('userId')
-                await API.addSpiceToRack(addSpiceState, spiceID)
-                console.log(addSpiceState);
-            }
-        ).catch(err => {
-            console.error(err);
-        }).finally(
-            async () => {
-                await API.getUserSpices(userId).then(spiceArr => {
-                    const Spices = JSON.stringify(spiceArr);
-                    localStorage.setItem('Spices', Spices)
-                })
-
-                // localStorage.removeItem('spiceAddedId')
-            
-        })
+        try {
+            const spiceId = await API.addSpice(addSpiceState);
+            console.log(spiceId);
+            const response = await API.addSpiceToRack(addSpiceState, spiceId);
+            console.log(response);
+            const updatedSpices = await API.getUserSpices(userId);
+            localStorage.setItem('Spices', JSON.stringify(updatedSpices));
+            console.log(updatedSpices);
+            window.location.reload();
+            localStorage.removeItem('spiceAddedId')
+        } catch (e){
+            console.error(e);
+        }
     }
 
-    const addSpice = event => {
-        event.preventDefault();
-
-        console.log('addingSpice!!');
-    }
 
     return (
         <Container className={classes.background}>
-            <IconButton className={classes.icon} >
+            <IconButton className={classes.icon} onClick={props.handleModalClose}>
                 <CancelIcon htmlColor='red' />
             </IconButton>
             <form addSpiceState>
@@ -144,7 +132,9 @@ export default function AddSpiceDialogue() {
                         ></TextField>
                     </Grid>
                 </Grid>
-                <Button variant='contained' color='primary' onClick={handleAddSpice}>Add Spice</Button>
+                <Button  variant='contained' color='primary' onClick={handleAddSpice}>Add Spice</Button>
+                {/* <Button variant='contained' color='primary' onClick={props.closeModal}>Cancel</Button> */}
+
             </form>
         </Container>
     )

@@ -10,8 +10,8 @@ export default function SpiceJar(props) {
             <Avatar>{props.name.slice(0,1)}</Avatar>
             <Typography>{props.name}</Typography>
             <Typography>{props.brand}</Typography>
-            <Typography>{props.purchaseDate}</Typography>
-            <Typography>{props.expires}</Typography>
+            <Typography>Purchased: {props.purchaseDate}</Typography>
+            <Typography>Best Before: {props.expires}</Typography>
         </Grid>
     )
 }

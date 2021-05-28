@@ -7,6 +7,7 @@ const useStyles = makeStyles({
     background: {
         paddingTop: '48px',
         backgroundImage:'url(https://res.cloudinary.com/dyn9tmf2i/image/upload/v1611791392/SpiceAppBackgroundMed_gcmiqr.png)',
+        backgroundColor: 'grey',
         minHeight:'500px',
         backgroundPosition:'top center',
         backgroundSize:'cover', 
