@@ -49,6 +49,7 @@ export default function Navbar() {
             marginLeft:'5px',
             borderRadius: '5px',
             top: '1px',
+            zIndex: 1,
         }}>
         <Button aria-controls="simple-menu" color='inherit' aria-haspopup="true" onClick={handleClick}>
           Open Menu
