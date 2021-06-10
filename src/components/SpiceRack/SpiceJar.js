@@ -3,12 +3,14 @@ import React from 'react'
 var dayjs = require('dayjs')
 
 export default function SpiceJar(props) {
-    const expireDate = props.expires
+    // the addition of the 01/ is to create a date string recognized by dayjs
+    const expireDate = '01/' + props.expires
     // simple check to see if spice is expired
-    const currentDate = dayjs().isAfter(expireDate);
+    const currentDate = dayjs().isAfter(dayjs(expireDate).format('DD/MM/YYYY'));
+    const expired = currentDate ? 'expired': 'fine';
 
     return (
-        <Grid item justify='center' alignContent='center' className={currentDate ? 'expired': 'fine'}>
+        <Grid item justify='center' alignContent='center' className={`spiceJar ${expired}`}>
             <Avatar className='avatar-adjust' align='center' variant='rounded'>{props.name.slice(0,1)}</Avatar>
             <Typography align='center'>{props.name}</Typography>
             <Typography align='center'>{props.brand}</Typography>
