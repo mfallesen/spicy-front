@@ -33,9 +33,17 @@ export default function Navbar() {
         setAnchorEl(null);
       };
 
+      const spiceRack = () => {
+        window.location.href = '/spicerack'
+      }
+
+      const userDash = () => {
+        window.location.href = '/userDashboard';
+      }
+
       const logout = () => {
         localStorage.clear();
-        window.location.href = "/";
+        window.location.href = '/';
     }
 
     return (
@@ -61,8 +69,8 @@ export default function Navbar() {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>My Spice Rack</MenuItem>
-          <MenuItem onClick={handleClose}>My Account</MenuItem>
+          <MenuItem onClick={spiceRack}>My Spice Rack</MenuItem>
+          <MenuItem onClick={userDash}>My Account</MenuItem>
           <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
       </div>
