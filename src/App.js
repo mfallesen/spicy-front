@@ -12,6 +12,7 @@ import theme from './theme'
 import LogInNav from './components/LogInNav';
 import API from './utils/API';
 import { useState } from 'react';
+import UserProfile from './components/UserProfile';
 
 
 function App() {
@@ -69,6 +70,9 @@ function App() {
             <Route exact path={'/spicerack'}>
               <SpiceRack />
               
+            </Route>
+            <Route exact path={'/userDashboard'}>
+              <UserProfile />
             </Route>
           </Switch>
           <Footer />

@@ -67,8 +67,12 @@ export default function LogInNav() {
     const handleUserLogin = async event => {
         event.preventDefault();
         await API.login(logInFormState).then(async newToken => {
+            
+            console.log(newToken.data.userRealName);
+
             localStorage.setItem('JWT', newToken.data.token);
             localStorage.setItem('USERNAME', logInFormState.username);
+            localStorage.setItem('userFirstName', newToken.data.userRealName)
 
 
             const userID = newToken.data.id;
@@ -84,7 +88,7 @@ export default function LogInNav() {
             await API.getUserSpices(userID).then(spiceArr => {
                 console.log("It gets into the getUserSpices Call");
                 const Spices = JSON.stringify(spiceArr)
-                console.log('USER SPICES', Spices);
+                // console.log('USER SPICES', Spices);
                 localStorage.setItem('Spices', Spices)
                 
             })
