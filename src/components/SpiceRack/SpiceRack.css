@@ -8,8 +8,27 @@
 }
 
 .spiceJar {
-  width: 110px;
+  height: 300px;
+  width: 200px;
   margin: 12px !important;
+  background-image: url("./spiceJar.svg");
+  background-color: silver;
+}
+
+.spiceName {
+  padding-top: 20px;
+}
+
+.spiceBrand {
+  padding-top: 50px;
+}
+
+.spicePurchase {
+  padding-top: 10px;
+}
+
+.spiceExpire {
+  padding-top: 10px;
 }
 
 .avatar-adjust {
@@ -17,7 +36,9 @@
 }
 
 .expired {
-  background-color: red;
+  color: red;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
 }
 
 .fine {

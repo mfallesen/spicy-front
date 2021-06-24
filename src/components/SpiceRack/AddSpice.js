@@ -20,16 +20,16 @@ export default function AddSpice() {
 
     const handleAddModalClose = () => {
         
-        // setModalOpen(false)
+        setModalOpen(false)
     }
 
     return (
         <div>
-            <IconButton onClick={handleAddClick}>
+            <IconButton className='addSpiceButton' onClick={handleAddClick}>
                 <AddIcon/>
             </IconButton>
             <Modal
-            onClick={handleAddModalClose}
+            // onClick={handleAddModalClose}
                 open={modalOpen}
                 onClose={handleAddModalClose}
                 aria-labelledby='add spice'

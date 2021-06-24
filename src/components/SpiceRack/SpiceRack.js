@@ -28,16 +28,16 @@ export default function SpiceRack() {
     return (
         <div className='spiceRack'>
             <Typography variant='h1' align='center'> {username}'s Spice Rack</Typography>
+            <AddSpice />
             <Grid className={'spiceRackGrid'} container spacing={2} justify='center'>
 
 
                 {existingSpice
                     ? userSpiceArr.map((spice) => {
                         return <SpiceJar key={spice} name={spice.spice_name} brand={spice.brand} purchaseDate={spice.purchase_date} expires={spice.expiration_date} className='spiceJar' />
-                      })
+                    })
                     : <Typography variant='h2'>Looks Like you don't have any spices yet!. Lets Change that. </Typography>}
             </Grid>
-            <AddSpice />
         </div>
     )
 }
