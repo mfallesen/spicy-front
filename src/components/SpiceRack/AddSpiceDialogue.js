@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function AddSpiceDialogue(props) {
+
+
     const userId = localStorage.getItem('userId');
 
     const classes = useStyles();
@@ -70,9 +72,13 @@ export default function AddSpiceDialogue(props) {
 
     return (
         <Container className={classes.background}>
-            <IconButton className={classes.icon} onClick={props.handleModalClose}>
-                <CancelIcon htmlColor='red' />
-            </IconButton>
+
+            {/* TODO: Implement when rest of app is useable */}
+            {/* <IconButton className={classes.icon} >
+                <CancelIcon htmlColor='red' onClick={props.handleAddModalClose} />
+            </IconButton> */}
+            
+            
             <form addSpiceState>
                 <Grid container spacing={3} justify='center' direction='column' alignItems='center'>
                     <Grid item>

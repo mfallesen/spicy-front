@@ -28,7 +28,7 @@ export default function SpiceRack() {
     return (
         <div className='spiceRack'>
             <Typography variant='h1' align='center'> {username}'s Spice Rack</Typography>
-            <AddSpice />
+            <AddSpice className='addSpiceButton' />
             <Grid className={'spiceRackGrid'} container spacing={2} justify='center'>
 
 

@@ -1,4 +1,4 @@
-import { IconButton, Modal } from '@material-ui/core'
+import { IconButton, Modal, Button } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import {React, useState} from 'react'
 import AddSpiceDialogue from './AddSpiceDialogue';
@@ -24,12 +24,12 @@ export default function AddSpice() {
     }
 
     return (
-        <div>
-            <IconButton className='addSpiceButton' onClick={handleAddClick}>
-                <AddIcon/>
-            </IconButton>
+        <div >
+            <Button  onClick={handleAddClick} className='addSpiceButton' >
+                Add Spice <AddIcon/>
+            </Button>
             <Modal
-            // onClick={handleAddModalClose}
+        // handleModalClose={handleAddModalClose}
                 open={modalOpen}
                 onClose={handleAddModalClose}
                 aria-labelledby='add spice'
