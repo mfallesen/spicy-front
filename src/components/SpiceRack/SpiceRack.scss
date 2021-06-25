@@ -42,8 +42,10 @@
 }
 
 .expired {
-    color: red;
-    transform: scale(1.4);
+
+    background-image: url('./spiceJarExpired.svg')!important;
+    // color: red;
+    // transform: scale(1.4);
 
     // animation: pulse 5s infinite;
 }

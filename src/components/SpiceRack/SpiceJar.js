@@ -10,14 +10,14 @@ export default function SpiceJar(props) {
     const expired = currentDate ? 'expired': '';
 
     return (
-        <Grid item justify='center' alignContent='center' className={`spiceJar`}>
+        <Grid item justify='center' alignContent='center' className={`spiceJar ${expired}`}>
             {/* <Avatar className='avatar-adjust' align='center' variant='rounded'>{props.name.slice(0,1)}</Avatar> */}
             <Typography variant='h6' className='spiceName' align='center'>{props.name}</Typography>
             <Typography className='spiceBrand' align='center'>{props.brand}</Typography>
             <Typography className='spicePurchase' align='center'>Purchased:</Typography>
             <Typography className='spicePurchase' align='center'>{props.purchaseDate}</Typography>
-            <Typography className={`spiceExpire ${expired}`} align='center'>Best Before:</Typography>
-            <Typography className={`spiceExpire ${expired}`} align='center'>{props.expires}</Typography>
+            <Typography className={`spiceExpire `} align='center'>Best Before:</Typography>
+            <Typography className={`spiceExpire `} align='center'>{props.expires}</Typography>
         </Grid>
     )
 }

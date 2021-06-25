@@ -41,9 +41,7 @@
 }
 
 .expired {
-  color: red;
-  -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+  background-image: url("./spiceJarExpired.svg") !important;
 }
 
 .fine {

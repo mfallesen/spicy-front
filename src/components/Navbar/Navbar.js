@@ -34,10 +34,16 @@ export default function Navbar() {
       };
 
       const spiceRack = () => {
+
+        // Validate User Before allowing
+
         window.location.href = '/spicerack'
       }
 
       const userDash = () => {
+
+        // Validate User before allowing
+
         window.location.href = '/userDashboard';
       }
 
@@ -49,7 +55,7 @@ export default function Navbar() {
     return (
         <div style={{
             // Color needs to be changed to Transparent for prod
-            backgroundColor: scrollState === 'top' ? 'black' : 'grey',
+            backgroundColor: scrollState === 'top' ? 'transparent' : 'grey',
             color: scrollState === 'top' ? 'white' : 'black',
             transitionDuration: '1s',
             position: 'fixed',
