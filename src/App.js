@@ -34,8 +34,25 @@ function App() {
   })
 
 
+  const signUpValidate = (signUpFormState) => {
+    // let userNameRegEx = '*\w';
+    // let nameRegEx = '*\w';
+    // let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$";
+    // let emailRegex = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
+    
+
+    // while (signUpFormState.username === undefined && signUpFormState.username.length > 32 && signUpFormState.username !== userNameRegEx) {
+      
+    // }
+
+  }
 
   const handleUserRegistration = event => {
+
+  
+
+
+
     event.preventDefault();
     API.registerUser(signUpFormState).then(userData => {
       console.log("USER DATA:", userData);
