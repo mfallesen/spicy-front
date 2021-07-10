@@ -36,7 +36,7 @@ export default function SpiceRack() {
 
                 {existingSpice
                     ? userSpiceArr.map((spice) => {
-                        return <SpiceJar key={spice} name={spice.spice_name} brand={spice.brand} purchaseDate={spice.purchase_date} expires={spice.expiration_date} className='spiceJar' />
+                        return <SpiceJar key={spice} name={spice.spice_name} brand={spice.brand} purchaseDate={spice.purchase_date} expires={spice.expiration_date} spiceID={spice.id} className='spiceJar' />
                     })
                     : <Typography variant='h2'>Looks Like you don't have any spices yet!. Lets Change that. </Typography>}
             </Grid>

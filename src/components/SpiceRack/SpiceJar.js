@@ -1,4 +1,5 @@
-import { Grid, Avatar, Typography } from '@material-ui/core'
+import { Grid, Avatar, Typography, IconButton } from '@material-ui/core'
+import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react'
 var dayjs = require('dayjs')
 
@@ -10,7 +11,7 @@ export default function SpiceJar(props) {
     const expired = currentDate ? 'expired': '';
 
     return (
-        <Grid item justify='center' alignContent='center' className={`spiceJar ${expired}`}>
+        <Grid item justify='center' alignContent='center' className={`spiceJar ${expired}`} data-spiceId={`${props.spiceID}`}>
             {/* <Avatar className='avatar-adjust' align='center' variant='rounded'>{props.name.slice(0,1)}</Avatar> */}
             <Typography variant='h6' className='spiceName' align='center'>{props.name}</Typography>
             <Typography className='spiceBrand' align='center'>{props.brand}</Typography>
@@ -18,6 +19,9 @@ export default function SpiceJar(props) {
             <Typography className='spicePurchase' align='center'>{props.purchaseDate}</Typography>
             <Typography className={`spiceExpire `} align='center'>Best Before:</Typography>
             <Typography className={`spiceExpire `} align='center'>{props.expires}</Typography>
+            <IconButton>
+                <DeleteIcon/>
+            </IconButton>
         </Grid>
     )
 }
