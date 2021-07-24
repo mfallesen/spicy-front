@@ -94,6 +94,20 @@ const calls = {
             brand: spiceData.brandname
         })
 
+    },
+
+    // Remove Spice from Users Spice Rack
+    removeSpiceFromRack: async function(spiceID, userID) {
+        console.log(spiceID)
+        console.log(userID)
+
+        await axios.delete(BASEURL + '/user/removeSpiceFromUser', {
+            spiceId: spiceID,
+            userId: userID
+        })
+
+        // Delete from local storage as well
+        
     }
 
 }

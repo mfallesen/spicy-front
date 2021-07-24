@@ -1,6 +1,9 @@
-import { Grid, Avatar, Typography, IconButton } from '@material-ui/core'
+import { Grid, Typography, IconButton } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react'
+import API from '../../utils/API'
+
+
 var dayjs = require('dayjs')
 
 export default function SpiceJar(props) {
@@ -10,16 +13,27 @@ export default function SpiceJar(props) {
     const currentDate = dayjs().isAfter(dayjs(expireDate).format('DD/MM/YYYY'));
     const expired = currentDate ? 'expired': '';
 
+    // Call to API to remove Spice from user Rack
+    const deleteSpiceFromRack = () => { 
+        try {
+            const userID = JSON.parse(localStorage.getItem('userId'))
+            API.removeSpiceFromRack(props.spiceID, userID)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
+
     return (
-        <Grid item justify='center' alignContent='center' className={`spiceJar ${expired}`} data-spiceId={`${props.spiceID}`}>
-            {/* <Avatar className='avatar-adjust' align='center' variant='rounded'>{props.name.slice(0,1)}</Avatar> */}
+        <Grid item id={`${props.spiceID}`} justify='center' alignContent='center' className={`spiceJar ${expired}`} >
             <Typography variant='h6' className='spiceName' align='center'>{props.name}</Typography>
             <Typography className='spiceBrand' align='center'>{props.brand}</Typography>
             <Typography className='spicePurchase' align='center'>Purchased:</Typography>
             <Typography className='spicePurchase' align='center'>{props.purchaseDate}</Typography>
             <Typography className={`spiceExpire `} align='center'>Best Before:</Typography>
             <Typography className={`spiceExpire `} align='center'>{props.expires}</Typography>
-            <IconButton>
+            <IconButton onClick={deleteSpiceFromRack}>
                 <DeleteIcon/>
             </IconButton>
         </Grid>
