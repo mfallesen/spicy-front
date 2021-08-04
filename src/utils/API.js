@@ -107,7 +107,23 @@ const calls = {
         })
 
         // Delete from local storage as well
-        
+        let storedSpices = JSON.parse(localStorage.getItem('Spices'))
+        console.log(storedSpices);
+        let altStoredSpices = [];
+
+        for (const item of storedSpices) {
+            console.log(item);
+            if (item.id === spiceID) {
+                continue;
+            }
+            altStoredSpices.push(item)
+        }
+
+        console.log("+++++++++++++");
+        console.log(altStoredSpices);
+        console.log("+++++++++++++");
+
+        // TODO: ReRender the Spice Rack Component.
     }
 
 }
