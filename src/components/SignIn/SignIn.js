@@ -21,6 +21,7 @@ export default function SignIn(props) {
     const handleSignUp = () => {
         // Placeholder
         console.log("redirecting to Sign Up Page");
+        window.location.href = '/signup'
     }
 
     const handleClose = () => {
