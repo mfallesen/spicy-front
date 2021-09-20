@@ -61,6 +61,7 @@ export default function LogInNav() {
         setModalOpen(true);
     }
     const handleClose = () => {
+        console.log(modalOpen)
         setModalOpen(false);
     }
 
@@ -115,7 +116,7 @@ export default function LogInNav() {
             <Button color='inherit' onClick={handleOpen}>Log In</Button>
             <Modal
                 open={modalOpen}
-                onClose={handleClose}
+                close={handleClose}
                 aria-labelledby='login-modal-title'
                 aria-describedby='login-modal-description'
             >

@@ -17,23 +17,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
 
-
+    console.log(props)
     const handleSignUp = () => {
         // Placeholder
         console.log("redirecting to Sign Up Page");
         window.location.href = '/signup'
     }
 
-    const handleClose = () => {
-        // Placeholder
-        console.log("Closing Modal!");
-    }
+    // const handleClose = () => {
+    //     // Placeholder
+    //     console.log("Closing Modal!");
+    //     console.log(props)
+    //     // console.log(...props)
+    //     props.onClose()
+    // }
 
     const classes = useStyles()
     return (
 
         <Container className={props.classes.signInBG}>
-                <IconButton className={classes.icon} onClick={handleClose}>
+                <IconButton className={classes.icon} onClick={props.close}>
                 <CancelIcon  htmlColor='red' />
                 </IconButton>
 
