@@ -1,6 +1,6 @@
 export const open = () => {
     return{
-        type: 'OPEM'
+        type: 'OPEN'
     };
 };
 export const close = () => {
