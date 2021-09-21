@@ -36,7 +36,7 @@ export default function SignIn(props) {
     return (
 
         <Container className={props.classes.signInBG}>
-                <IconButton className={classes.icon} onClick={props.close}>
+                <IconButton className={classes.icon} onClick={props.handleClose}>
                 <CancelIcon  htmlColor='red' />
                 </IconButton>
 

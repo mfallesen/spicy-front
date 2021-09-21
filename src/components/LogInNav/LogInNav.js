@@ -2,6 +2,8 @@ import { React, useEffect, useState } from 'react'
 import { Button, makeStyles, Modal, } from '@material-ui/core'
 import SignIn from '../SignIn/index'
 import API from '../../utils/API'
+import { useSelector, useDispatch } from 'react-redux'
+import { close, open } from '../../utils/actions/openLoginModal'
 
 const useStyles = makeStyles({
     signInBG: {
@@ -21,12 +23,18 @@ const useStyles = makeStyles({
 
 
 export default function LogInNav() {
+    const dispatch = useDispatch();
     const classes = useStyles()
 
     const[spiceRackState, setSpiceRackState] = useState()
 
     const [scrollState, setScrollState] = useState('top')
-    const [modalOpen, setModalOpen] = useState(false)
+
+
+// Replacing modal Open STate with Redux component
+    // const [modalOpen, setModalOpen] = useState(false)
+    const modalOpen = useSelector( state => state.loginModalToggle)
+
 
     const [logInFormState, setLogInFormState] = useState({
         username: '',
@@ -57,12 +65,17 @@ export default function LogInNav() {
         }
     }, [scrollState])
 
-    const handleOpen = () => {
-        setModalOpen(true);
-    }
+    // const handleOpen = () => {
+    
+            
+    
+    
+    
+    //     // setModalOpen(true);
+    // }
     const handleClose = () => {
-        console.log(modalOpen)
-        setModalOpen(false);
+    //     console.log(modalOpen)
+    //     setModalOpen(false);
     }
 
     const handleUserLogin = async event => {
@@ -113,14 +126,13 @@ export default function LogInNav() {
             marginLeft: '5px',
             borderRadius: '5px'
         }}>
-            <Button color='inherit' onClick={handleOpen}>Log In</Button>
+            <Button color='inherit' onClick={() => dispatch(open())}>Log In</Button>
             <Modal
                 open={modalOpen}
-                close={handleClose}
                 aria-labelledby='login-modal-title'
                 aria-describedby='login-modal-description'
             >
-                <SignIn  classes={classes} handleClose={handleClose} handleUserLogin={handleUserLogin} inputChange={logInInputChange} form={logInFormState}/>
+                <SignIn  classes={classes} handleClose={() => dispatch(close())} handleUserLogin={handleUserLogin} inputChange={logInInputChange} form={logInFormState}/>
             </Modal>
         </div> 
     )
