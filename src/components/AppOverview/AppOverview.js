@@ -1,11 +1,15 @@
 import { Grid, Paper, Typography, Button, InputLabel } from '@material-ui/core'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { open } from '../../utils/actions/openLoginModal'
 import './AppOverview.css'
 
 
 
 export default function AppOverview() {
+
+    const dispatch = useDispatch();
 
     const routeToSignUp = () => {
         window.location.href = "/signup"
@@ -21,7 +25,7 @@ export default function AppOverview() {
                 <Grid item xs={8} className={'landing-call-to-action'} container direction='column' alignItems='center' justify='center'>
                     <Typography>Its easy to get started. Sign up for a free account. </Typography>
                     <Button className={'landing-btn'} onClick={routeToSignUp} id='landingSignIn'>Sign Up</Button>
-                    <InputLabel htmlFor="landingSignIn">Already have an Account? <Link to={'/'}>Sign In</Link> </InputLabel>
+                    <InputLabel htmlFor="landingSignIn">Already have an Account? <Link to={'/'} onClick={() => dispatch(open())}>Sign In</Link> </InputLabel>
                 </Grid>
                 
             </Grid>
