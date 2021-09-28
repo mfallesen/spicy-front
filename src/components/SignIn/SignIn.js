@@ -54,7 +54,7 @@ export default function SignIn(props) {
                                 name='username'
                                 label='User Name:'
                                 placeholder='Username'
-                                onChange={props.inputChange}
+                                onChange={props.onInputChange}
                                 value={props.form.username}
                             />
                             <TextField
@@ -64,7 +64,7 @@ export default function SignIn(props) {
                                 name='password'
                                 label='Password:'
                                 placeholder='Password'
-                                onChange={props.inputChange}
+                                onChange={props.onInputChange}
                                 value={props.form.password}
                             />
                             

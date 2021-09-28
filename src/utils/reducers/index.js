@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import loginModalToggle from './loginModalToggle';
 
+
 const reducers = combineReducers({
-    loginModalToggle
+    loginModalToggle,
+    
 })
 
 export default reducers

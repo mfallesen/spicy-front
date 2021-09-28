@@ -5,6 +5,7 @@ import API from '../../utils/API'
 import { useSelector, useDispatch } from 'react-redux'
 import { close, open } from '../../utils/actions/openLoginModal'
 
+
 const useStyles = makeStyles({
     signInBG: {
         backgroundColor: 'white',
@@ -32,15 +33,20 @@ export default function LogInNav() {
 
 
 // Replacing modal Open STate with Redux component
-    // const [modalOpen, setModalOpen] = useState(false)
+    
     const modalOpen = useSelector( state => state.loginModalToggle)
 
+
+//  Login State
+    // const loginForm = useSelector(state => state.logInFormState)
 
     const [logInFormState, setLogInFormState] = useState({
         username: '',
         password: '',
       })
     
+
+
       const logInInputChange = event => {
         const { name, value } = event.target;
         setLogInFormState({
@@ -132,7 +138,7 @@ export default function LogInNav() {
                 aria-labelledby='login-modal-title'
                 aria-describedby='login-modal-description'
             >
-                <SignIn  classes={classes} handleClose={() => dispatch(close())} handleUserLogin={handleUserLogin} inputChange={logInInputChange} form={logInFormState}/>
+                <SignIn  classes={classes} handleClose={() => dispatch(close())} handleUserLogin={handleUserLogin} onInputChange={logInInputChange} form={logInFormState}/>
             </Modal>
         </div> 
     )
