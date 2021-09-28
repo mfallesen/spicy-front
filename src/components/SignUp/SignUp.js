@@ -87,6 +87,7 @@ export default function SignUp(props) {
                         Sign Up
                     </Button>
                 </form>
+                <Button variant='contained' color='primary' value='home' onClick={() => { window.location.href = '/'}}>Go Back</Button>
             </Grid>
 
         </Container>
