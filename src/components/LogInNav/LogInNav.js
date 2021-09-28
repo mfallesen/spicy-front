@@ -27,7 +27,9 @@ export default function LogInNav() {
     const dispatch = useDispatch();
     const classes = useStyles()
 
-    const[spiceRackState, setSpiceRackState] = useState()
+
+    // Delete after migration
+    // const[spiceRackState, setSpiceRackState] = useState()
 
     const [scrollState, setScrollState] = useState('top')
 
@@ -35,10 +37,6 @@ export default function LogInNav() {
 // Replacing modal Open STate with Redux component
     
     const modalOpen = useSelector( state => state.loginModalToggle)
-
-
-//  Login State
-    // const loginForm = useSelector(state => state.logInFormState)
 
     const [logInFormState, setLogInFormState] = useState({
         username: '',
@@ -71,18 +69,6 @@ export default function LogInNav() {
         }
     }, [scrollState])
 
-    // const handleOpen = () => {
-    
-            
-    
-    
-    
-    //     // setModalOpen(true);
-    // }
-    const handleClose = () => {
-    //     console.log(modalOpen)
-    //     setModalOpen(false);
-    }
 
     const handleUserLogin = async event => {
         event.preventDefault();

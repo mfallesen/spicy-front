@@ -6,6 +6,11 @@ import './AppOverview.css'
 
 
 export default function AppOverview() {
+
+    const routeToSignUp = () => {
+        window.location.href = "/signup"
+    }
+
     return (
         <Paper>
             <Grid container className={'landing-call-to-action'} justify='center' alignContent='center' >
@@ -15,7 +20,7 @@ export default function AppOverview() {
                 </Grid>
                 <Grid item xs={8} className={'landing-call-to-action'} container direction='column' alignItems='center' justify='center'>
                     <Typography>Its easy to get started. Sign up for a free account. </Typography>
-                    <Button className={'landing-btn'} id='landingSignIn'>Sign Up</Button>
+                    <Button className={'landing-btn'} onClick={routeToSignUp} id='landingSignIn'>Sign Up</Button>
                     <InputLabel htmlFor="landingSignIn">Already have an Account? <Link to={'/'}>Sign In</Link> </InputLabel>
                 </Grid>
                 
