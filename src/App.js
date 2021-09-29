@@ -23,19 +23,6 @@ function App() {
     isLoggedIn = false
   }
 
-  const signUpValidate = (signUpFormState) => {
-    // let userNameRegEx = '*\w';
-    // let nameRegEx = '*\w';
-    // let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$";
-    // let emailRegex = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
-
-
-    // while (signUpFormState.username === undefined && signUpFormState.username.length > 32 && signUpFormState.username !== userNameRegEx) {
-
-    // }
-
-  }
-
 return (
   <div>
     <ThemeProvider theme={theme}>
