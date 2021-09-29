@@ -33,26 +33,103 @@ export default function SignUp() {
         })
     }
 
-    // Register use with product and log them into their account
+    // Validate entries then Register user with product and log them into their account
+    // Validation
+    let userNameRegEx = /^[a-z ,.'-,0-9]+$/i
+    let nameRegEx = /^[a-z ,.'-]+$/i
+    let emailRegex = /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$/
+    let passwordRegex = /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~]+$/i
+
+
+    // Verify functions
+    const verifyUsername = (form) => {
+        if (!userNameRegEx.test(form.username)) {
+            throw 'Invalid Username'
+        }
+    }
+
+    const verifyName = ({ name }) => {
+        if (!nameRegEx.test(name)) {
+            throw 'Invalid Name'
+        }
+    }
+
+    const verifyEmail = ({ email }) => {
+        if (!emailRegex.test(email)) {
+            throw 'Invalid Email';
+        }
+
+    }
+
+    const verifyPassword = ({ password }) => {
+
+
+        if (!passwordRegex.test(password)) {
+            throw 'Invalid Password';
+        }
+    }
+
+    const verifyPasswordConfirm = (form) => {
+
+
+        if (form.password !== form.passwordConfirm || !passwordRegex.test(form.passwordConfirm)) {
+            throw 'Passwords do not match'
+        }
+    }
+
     const handleUserRegistration = event => {
-
         event.preventDefault();
-        API.registerUser(signUpFormState).then(userData => {
-            console.log("USER DATA:", userData);
+
+        try {
+
+            verifyName(signUpFormState)
+            verifyUsername(signUpFormState)
+            verifyEmail(signUpFormState);
+            verifyPassword(signUpFormState);
+            verifyPasswordConfirm(signUpFormState);
+            console.log("made it through");
+
+        } catch (err) {
+            switch (err) {
+                case 'Invalid Name':
+                    console.error(err, 'we got it')
+                    break;
+                case 'Invalid Email':
+                    console.error(err, 'we got it')
+                    break;
+                case 'Invalid Password':
+                    console.error(err, 'we got it')
+                    break;
+                case 'Passwords do not match':
+                    console.error(err, 'we got it')
+                    break;
+                case 'Invalid Username':
+                    console.error(err, 'we got it')
+                    break;
+                default:
+                    console.log(err, ' Unknown error');
+            }
+            console.error(err, 'we got it outside')
+
+        }
 
 
-            // Validate input before logging them in
-            // try {
-            //   API.login(userData).then(loginData => {
+        // API.registerUser(signUpFormState).then(userData => {
+        //     console.log("USER DATA:", userData);
 
-            //   })
 
-            // } catch (e) {
-            //   console.error(e)
-            // }
+        //     // Validate input before logging them in
+        //     // try {
+        //     //   API.login(userData).then(loginData => {
 
-            window.location.href = '/'
-        })
+        //     //   })
+
+        //     // } catch (e) {
+        //     //   console.error(e)
+        //     // }
+
+        //     window.location.href = '/'
+        // })
     }
 
     return (
