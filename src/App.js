@@ -10,8 +10,6 @@ import { BrowserRouter as Route, Switch } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import theme from './theme'
 import LogInNav from './components/LogInNav';
-import API from './utils/API';
-import { useState } from 'react';
 import UserProfile from './components/UserProfile';
 
 
@@ -24,15 +22,6 @@ function App() {
   } else {
     isLoggedIn = false
   }
-
-  const [signUpFormState, setSignUpFormState] = useState({
-    username: '',
-    password: '',
-    email: '',
-    name: '',
-    passwordConfirm: ''
-  })
-
 
   const signUpValidate = (signUpFormState) => {
     // let userNameRegEx = '*\w';
@@ -47,43 +36,6 @@ function App() {
 
   }
 
-  const handleUserRegistration = event => {
-
-
-
-
-
-    event.preventDefault();
-    API.registerUser(signUpFormState).then(userData => {
-      console.log("USER DATA:", userData);
-
-
-      // Validate input before logging them in
-      // try {
-      //   API.login(userData).then(loginData => {
-
-      //   })
-
-      // } catch (e) {
-      //   console.error(e)
-      // }
-
-    window.location.href = '/'
-  })
-}
-
-const inputChangeRegister = event => {
-  const { name, value } = event.target;
-  setSignUpFormState({
-    ...signUpFormState,
-    [name]: value
-  })
-}
-
-// Move the login logic into the app or into its individual UTILITY
-
-
-
 return (
   <div>
     <ThemeProvider theme={theme}>
@@ -94,10 +46,10 @@ return (
         <Switch>
           <Route exact path={['/', '/home']}>
             <LandingPage />
-            <AppOverview onSubmit={handleUserRegistration} />
+            <AppOverview />
           </Route>
           <Route exact path={'/signup'}>
-            <SignUp onSubmit={handleUserRegistration} inputChange={inputChangeRegister} form={signUpFormState} />
+            <SignUp />
           </Route>
           <Route exact path={'/spicerack'}>
             <SpiceRack />

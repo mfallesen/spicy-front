@@ -1,5 +1,8 @@
 import { Button, Container, Grid, makeStyles, TextField, Typography } from '@material-ui/core'
-import React from 'react'
+import { React, useState } from 'react'
+import API from '../../utils/API';
+
+
 
 const useStyles = makeStyles((theme) => ({
     inputbox: {
@@ -8,72 +11,113 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function SignUp(props) {
+export default function SignUp() {
 
     const classes = useStyles()
+
+    // SignUpFormState
+    const [signUpFormState, setSignUpFormState] = useState({
+        username: '',
+        password: '',
+        email: '',
+        name: '',
+        passwordConfirm: ''
+    })
+
+    // Input Change Tracker
+    const inputChangeRegister = event => {
+        const { name, value } = event.target;
+        setSignUpFormState({
+            ...signUpFormState,
+            [name]: value
+        })
+    }
+
+    // Register use with product and log them into their account
+    const handleUserRegistration = event => {
+
+        event.preventDefault();
+        API.registerUser(signUpFormState).then(userData => {
+            console.log("USER DATA:", userData);
+
+
+            // Validate input before logging them in
+            // try {
+            //   API.login(userData).then(loginData => {
+
+            //   })
+
+            // } catch (e) {
+            //   console.error(e)
+            // }
+
+            window.location.href = '/'
+        })
+    }
+
     return (
 
         <Container>
             <Grid container justify='center' direction='column' alignItems='center'>
                 <Typography component='h2'> Ready to take control of your Spicy Life?</Typography>
                 {/* NoValidate only for development and testing */}
-                <form onSubmit={props.onSubmit} noValidate>
+                <form onSubmit={handleUserRegistration} noValidate>
                     <Grid container spacing={3} justify='center' >
 
                         <Grid item >
                             <TextField
-                            className={classes.inputbox}
+                                className={classes.inputbox}
                                 required
                                 variant='outlined'
                                 name='name'
                                 label='First Name:'
                                 placeholder='First Name:'
-                                onChange={props.inputChange}
-                                value={props.form.name}
+                                onChange={inputChangeRegister}
+                                value={signUpFormState.name}
                             />
 
                             <TextField
-                            className={classes.inputbox}
+                                className={classes.inputbox}
                                 required
                                 variant='outlined'
                                 name='username'
                                 label='Desired User Name:'
                                 placeholder='Witty Username Here:'
-                                onChange={props.inputChange}
-                                value={props.form.username}
+                                onChange={inputChangeRegister}
+                                value={signUpFormState.username}
                             />
                             <TextField
-                            className={classes.inputbox}
+                                className={classes.inputbox}
                                 required
                                 variant='outlined'
                                 name='email'
                                 label='Email Address:'
                                 placeholder='Email:'
-                                onChange={props.inputChange}
-                                value={props.form.email}
+                                onChange={inputChangeRegister}
+                                value={signUpFormState.email}
                             />
                         </Grid>
                         <Grid item >
                             <TextField
-                            className={classes.inputbox}
+                                className={classes.inputbox}
                                 required
                                 variant='outlined'
                                 name='password'
                                 label='Password:'
                                 placeholder='Enter Password:'
-                                onChange={props.inputChange}
-                                value={props.form.password}
+                                onChange={inputChangeRegister}
+                                value={signUpFormState.password}
                             />
                             <TextField
-                            className={classes.inputbox}
+                                className={classes.inputbox}
                                 required
                                 variant='outlined'
                                 name='passwordConfirm'
                                 label='Confirm Password:'
                                 placeholder='Confirm Password:'
                                 helperText='Passwords Must Match'
-                                onChange={props.inputChange}
-                                value={props.form.passwordConfirm}
+                                onChange={inputChangeRegister}
+                                value={signUpFormState.passwordConfirm}
                             />
 
                         </Grid>
@@ -83,11 +127,11 @@ export default function SignUp(props) {
                         variant='contained'
                         color='primary'
                         value='register'
-                        >
+                    >
                         Sign Up
                     </Button>
                 </form>
-                <Button variant='contained' color='primary' value='home' onClick={() => { window.location.href = '/'}}>Go Back</Button>
+                <Button variant='contained' color='primary' value='home' onClick={() => { window.location.href = '/' }}>Go Back</Button>
             </Grid>
 
         </Container>
